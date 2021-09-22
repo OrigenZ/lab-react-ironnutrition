@@ -38,7 +38,7 @@ function App() {
             {foundFoods.length
               ? foundFoods.map((food) => (
                   <FoodsBox
-                    key={food.name}
+                    key={food.name + Math.random() * 10}
                     food={food}
                     setFoods={setFoods}
                     foods={foods}
@@ -48,7 +48,7 @@ function App() {
                 ))
               : foods.map((food) => (
                   <FoodsBox
-                    key={food.name}
+                    key={food.name + Math.random() * 10}
                     food={food}
                     setFoods={setFoods}
                     foods={foods}
