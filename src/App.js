@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { Row, Divider } from 'antd'
+import './App.css'
+import foodsJson from './foods.json'
+import FoodsBox from './components/foodBox/FoodBox'
+import AddFoodForm from './components/addFoodForm/AddFoodForm'
+import SearchFoodForm from './components/searchFoodForm/searchFoodForm'
 
 function App() {
+  const [foods, setFoods] = useState(foodsJson)
+  const [foundFoods, setFoundFoods] = useState([])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Add food entry</h1>
+      <AddFoodForm setFood={setFoods} foods={foods} />
+      <Divider></Divider>
+      <h1>Search</h1>
+      <SearchFoodForm foods={foods} setFoundFoods={setFoundFoods} />
+      <Divider></Divider>
+      <h1>Food List</h1>
+      <Row>
+        {foundFoods.length
+          ? foundFoods.map((food) => (
+              <FoodsBox
+                key={food.name}
+                food={food}
+                setFoods={setFoods}
+                foods={foods}
+              />
+            ))
+          : foods.map((food) => (
+              <FoodsBox
+                key={food.name}
+                food={food}
+                setFoods={setFoods}
+                foods={foods}
+              />
+            ))}
+      </Row>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
