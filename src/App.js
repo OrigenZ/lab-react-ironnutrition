@@ -5,6 +5,7 @@ import foodsJson from './foods.json'
 import FoodsBox from './components/foodBox/FoodBox'
 import AddFoodForm from './components/addFoodForm/AddFoodForm'
 import SearchFoodForm from './components/searchFoodForm/searchFoodForm'
+import none from './images/none.png'
 
 const { Panel } = Collapse
 
@@ -32,27 +33,36 @@ function App() {
         <h2>Food List</h2>
       </Divider>
       <Row>
-        {foundFoods.length
-          ? foundFoods.map((food) => (
-              <FoodsBox
-                key={food.name}
-                food={food}
-                setFoods={setFoods}
-                foods={foods}
-                setFoundFoods={setFoundFoods}
-                foundFoods={foundFoods}
-              />
-            ))
-          : foods.map((food) => (
-              <FoodsBox
-                key={food.name}
-                food={food}
-                setFoods={setFoods}
-                foods={foods}
-                setFoundFoods={setFoundFoods}
-                foundFoods={foundFoods}
-              />
-            ))}
+        {foods.length ? (
+          <>
+            {foundFoods.length
+              ? foundFoods.map((food) => (
+                  <FoodsBox
+                    key={food.name}
+                    food={food}
+                    setFoods={setFoods}
+                    foods={foods}
+                    setFoundFoods={setFoundFoods}
+                    foundFoods={foundFoods}
+                  />
+                ))
+              : foods.map((food) => (
+                  <FoodsBox
+                    key={food.name}
+                    food={food}
+                    setFoods={setFoods}
+                    foods={foods}
+                    setFoundFoods={setFoundFoods}
+                    foundFoods={foundFoods}
+                  />
+                ))}
+          </>
+        ) : (
+          <div className="rick-roll">
+            <h3>Oops! No more content to show</h3>
+            <img src={none} alt="no more to show" />
+          </div>
+        )}
       </Row>
     </div>
   )

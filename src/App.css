@@ -12,3 +12,25 @@ h2 {
   color: grey !important;
   text-transform: uppercase;
 }
+
+.rick-roll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+
+  padding: 1rem 0 5rem 0;
+}
+
+.rick-roll h3 {
+  color: grey;
+  font-size: 1.4rem;
+  padding: 2rem;
+  text-transform: uppercase;
+}
+
+.rick-roll img {
+  width: 50px;
+  height: auto;
+}
