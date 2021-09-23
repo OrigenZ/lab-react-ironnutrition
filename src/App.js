@@ -13,6 +13,19 @@ function App() {
   const [foods, setFoods] = useState(foodsJson)
   const [foundFoods, setFoundFoods] = useState([])
 
+  let arrayToMap
+  if (foundFoods.length) arrayToMap = foundFoods
+  else arrayToMap = foods
+
+  const handleDeleteButton = (foodName) => {
+    const filteredFoods = foods.filter((theFood) => theFood.name !== foodName)
+    const filteredFoundFoods = foundFoods.filter(
+      (theFood) => theFood.name !== foodName,
+    )
+    setFoods(filteredFoods)
+    setFoundFoods(filteredFoundFoods)
+  }
+
   return (
     <div className="App">
       <Divider>
@@ -35,27 +48,13 @@ function App() {
       <Row>
         {foods.length ? (
           <>
-            {foundFoods.length
-              ? foundFoods.map((food) => (
-                  <FoodsBox
-                    key={food.name + Math.random() * 10}
-                    food={food}
-                    setFoods={setFoods}
-                    foods={foods}
-                    setFoundFoods={setFoundFoods}
-                    foundFoods={foundFoods}
-                  />
-                ))
-              : foods.map((food) => (
-                  <FoodsBox
-                    key={food.name + Math.random() * 10}
-                    food={food}
-                    setFoods={setFoods}
-                    foods={foods}
-                    setFoundFoods={setFoundFoods}
-                    foundFoods={foundFoods}
-                  />
-                ))}
+            {arrayToMap.map((food) => (
+              <FoodsBox
+                key={food.name + Math.random() * 10}
+                food={food}
+                handleDeleteButton={handleDeleteButton}
+              />
+            ))}
           </>
         ) : (
           <div className="rick-roll">
